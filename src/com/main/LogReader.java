@@ -15,7 +15,7 @@ public class LogReader {
 		new LogReader();
 	}
 	
-	int opa = 1;
+	int contadorLinha = 0;
 	public LogReader() throws IOException {
 		Path log = Paths.get("access500Linhas.log");
 		Files.readAllLines(log, StandardCharsets.ISO_8859_1).forEach(linha -> {
@@ -24,13 +24,13 @@ public class LogReader {
 			String[] dados = linha.split(" - - ");
 			String dataHora = dados[1].substring(1, 21); //TODO hora está string
 			
-			Impressora.imprimir(++opa);
+			Impressora.imprimir(++contadorLinha);
 			DataFilter.filterTypes(dados[1]);
 			
-			for (String dado : dados) {
+//			for (String dado : dados) {
 //				Impressora.imprimir(dado);
-			}
-			Impressora.imprimir("============================");
+//			}
+			Impressora.imprimir("=================================");
 		});
 		
 	}

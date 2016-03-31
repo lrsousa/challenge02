@@ -19,6 +19,7 @@ public final class DataFilter {
 
 	public static List<CountFileType> filterTypes(String linha) {
 		
+		
 		System.out.println(getFirstType(linha));
 		
 		
@@ -31,9 +32,8 @@ public final class DataFilter {
 		for(CountFileType tipo : CountFileType.values()) {
 			int typeFilePosition = linha.indexOf("." + tipo.name());
 			String sizeOfFile = linha.substring(typeFilePosition + (16 + tipo.name().length())).split(" ")[0];
-			if(linha.indexOf(tipo.toString()) > 0) {
-//				Impressora.imprimir(sizeOfFile);
-//				Impressora.imprimir(tipo.name());
+			System.out.println(sizeOfFile);
+			if(linha.indexOf(tipo.toString()) > 0 && ToolBox.isNumeric(sizeOfFile)) {
 				return new Archive(tipo.name(), Double.parseDouble(sizeOfFile));
 			}
 		}
