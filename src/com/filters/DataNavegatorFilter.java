@@ -10,9 +10,9 @@ import com.modelo.Navegator;
 
 public final class DataNavegatorFilter {
 
-	public static void filterNavegators(String linha) {
+	public static void filterNavegators(String line) {
 		for (CountNavegatorsType countNavegatorsType : CountNavegatorsType.values()) {
-			if(linha.indexOf(countNavegatorsType.name()) > -1) {
+			if(line.indexOf(countNavegatorsType.name()) > -1) {
 				countNavegatorsType.countIncrementer();
 			}
 		}

@@ -5,9 +5,12 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Arrays;
 
 import com.enumerators.CountFileType;
+import com.filters.DataDateTimeFilter;
 import com.filters.DataFileTypeFilter;
+import com.filters.DataIpFilter;
 import com.filters.DataNavegatorFilter;
 import com.filters.DataOSFilter;
 import com.modelo.Archive;
@@ -24,12 +27,10 @@ public class LogReader {
 	public LogReader() throws IOException {
 		Path log = Paths.get("access500Linhas.log");
 		Files.readAllLines(log, StandardCharsets.ISO_8859_1).forEach(linha -> {
-			String ip = linha.substring(16, 33).replace(" ", "").replace("-", "");
-			
 			String[] dados = linha.split(" - - ");
-			String dataHora = dados[1].substring(1, 21);
 			
-//			Impressora.imprimir(++contadorLinha);
+			DataIpFilter.filterIps(dados[0]);
+			DataDateTimeFilter.filterDateTime(dados[1].substring(1, 21));
 			
 			DataNavegatorFilter.filterNavegators(dados[1]);
 			DataOSFilter.filterOS(dados[1]);
