@@ -1,72 +1,107 @@
 package com.enumerators;
 
+import com.modelo.Archive;
+
 public enum CountFileType {
 	jpg {
 		@Override
-		public void incrementCountType() {
+		public void incrementCountType(double banda) {
+			CountFileType.bandaJpg += banda;
 		}
-		
+		@Override
+		public double getBanda() {
+			return CountFileType.bandaJpg;
+		}
 	},
 	png {
-
-		public void incrementCountType() {
+		@Override
+		public void incrementCountType(double banda) {
+			CountFileType.bandaPng += banda;
 		}
-		
+		@Override
+		public double getBanda() {
+			return CountFileType.bandaPng;
+		}
 	},
 	txt {
-
 		@Override
-		void incrementCountType() {
+		void incrementCountType(double banda) {
+			CountFileType.bandaTxt += banda;
 		}
-		
+		@Override
+		public double getBanda() {
+			return CountFileType.bandaTxt;
+		}
 	},
 	csv {
-
 		@Override
-		void incrementCountType() {
+		void incrementCountType(double banda) {
+			CountFileType.bandaCsv += banda;
 		}
-		
+		@Override
+		public double getBanda() {
+			return CountFileType.bandaCsv;
+		}
 	},
 	gif {
-
 		@Override
-		void incrementCountType() {
+		void incrementCountType(double banda) {
+			CountFileType.bandaGif += banda;
 		}
-		
+		@Override
+		public double getBanda() {
+			return CountFileType.bandaGif;
+		}
 	},
 	css {
-
 		@Override
-		void incrementCountType() {
+		void incrementCountType(double banda) {
+			CountFileType.bandaCss += banda;
 		}
-		
+		@Override
+		public double getBanda() {
+			return CountFileType.bandaCss;
+		}
 	},
 	js {
-
 		@Override
-		void incrementCountType() {
+		void incrementCountType(double banda) {
+			CountFileType.bandaJs += banda;
+		}
+		@Override
+		public double getBanda() {
+			return CountFileType.bandaJs;
 		}
 	};
 	
+	abstract void incrementCountType(double banda);
+	public abstract double getBanda();
 	
-	abstract void incrementCountType();
-	
-	static double countTxt = 0;
-	static double countCsv = 0;
-	static double countPng = 0;
-	static double countJpg = 0;
-	static double countGif = 0;
-	static double countCss = 0;
-	static double countJs = 0;
-	
-	public static final int callIncrementer(String tipo, double value) {
+	public static final int callIncrementer(Archive archive) {
 		try {
-			CountFileType fileType = CountFileType.valueOf(tipo);
-			fileType.incrementCountType();
+			CountFileType fileType = CountFileType.valueOf(archive.getType());
+			fileType.incrementCountType(archive.getSize());
 		} catch (Exception e) {
 			System.out.println("Tipo ausdhauhsduhasd nao enasuhdauhsduh");
 		}
 		return 0;
 	}
 	
+	static double bandaTxt = 0;
+	static double bandaCsv = 0;
+	static double bandaPng = 0;
+	static double bandaJpg = 0;
+	static double bandaGif = 0;
+	static double bandaCss = 0;
+	static double bandaJs = 0;
+	
+	public static String getAsString() {
+		return  "BandaTxt : " + txt.getBanda()
+				+ "\nBandaCsv : " + csv.getBanda()
+				+ "\nBandaPng : " + png.getBanda()
+				+ "\nBandaJpg : " + jpg.getBanda()
+				+ "\nBandaGif : " + gif.getBanda()
+				+ "\nBandaCss : " + css.getBanda()
+				+ "\nBandaJs : " + js.getBanda(); 
+	}
 }

@@ -15,6 +15,14 @@ O arquivo de log deve ser lido e algumas estatísticas devem ser coletadas, confo
 	ordem decrescente de tamanho.
 		• Tarefa 4: Criar um ranking com a lista de todas as plataformas (Windows, Linux, Mac, Android, etc) de
 	cliente utilizadas para acessar o servidor web, classificados em ordem crescente de quantidade.
+	
+	
+	
+	
+	FEITOS:
+	
+	
+	
 		• Tarefa 5: Mostrar a quantidade de largura de banda consumida por tipo de arquivo. Por exemplo, somar
 	todo o consumo de banda das transferências registradas de arquivos PNG. Ordenar descrescente por
 	tamanho total de transferência.

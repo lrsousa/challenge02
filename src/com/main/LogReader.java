@@ -6,6 +6,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
+import com.enumerators.CountFileType;
+import com.modelo.Archive;
 import com.modelo.DataFilter;
 import com.modelo.Impressora;
 
@@ -24,14 +26,26 @@ public class LogReader {
 			String[] dados = linha.split(" - - ");
 			String dataHora = dados[1].substring(1, 21); //TODO hora está string
 			
-			Impressora.imprimir(++contadorLinha);
+//			Impressora.imprimir(++contadorLinha);
+			
+			
+			
+			
 			DataFilter.filterTypes(dados[1]);
 			
 //			for (String dado : dados) {
 //				Impressora.imprimir(dado);
 //			}
-			Impressora.imprimir("=================================");
 		});
+		Impressora.imprimir("=================================");
+		
+		Impressora.imprimir("Item 5");
+		for (Archive archive : DataFilter.getOrdenatedTypes()) {
+			Impressora.imprimir(archive);
+		};
+		
+//		CountFileType.getOrdenated();
+//		Impressora.imprimir((CountFileType.getAsString()));
 		
 	}
 }
