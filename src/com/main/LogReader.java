@@ -7,9 +7,12 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 import com.enumerators.CountFileType;
+import com.filters.DataFileTypeFilter;
+import com.filters.DataNavegatorFilter;
+import com.filters.DataOSFilter;
 import com.modelo.Archive;
-import com.modelo.DataFilter;
-import com.modelo.Impressora;
+import com.modelo.Navegator;
+import com.toolbox.Impressora;
 
 public class LogReader {
 	
@@ -24,25 +27,23 @@ public class LogReader {
 			String ip = linha.substring(16, 33).replace(" ", "").replace("-", "");
 			
 			String[] dados = linha.split(" - - ");
-			String dataHora = dados[1].substring(1, 21); //TODO hora está string
+			String dataHora = dados[1].substring(1, 21);
 			
 //			Impressora.imprimir(++contadorLinha);
 			
+			DataNavegatorFilter.filterNavegators(dados[1]);
+			DataOSFilter.filterOS(dados[1]);
+			DataFileTypeFilter.filterTypes(dados[1]);
 			
 			
-			
-			DataFilter.filterTypes(dados[1]);
-			
-//			for (String dado : dados) {
-//				Impressora.imprimir(dado);
-//			}
 		});
 		Impressora.imprimir("=================================");
-		
+		Impressora.imprimir("Item 2");
+		Impressora.imprimir(DataNavegatorFilter.getOrdenatedNavegators());
+		Impressora.imprimir("Item 4");
+		Impressora.imprimir(DataOSFilter.getOrdenatedOSs());
 		Impressora.imprimir("Item 5");
-		for (Archive archive : DataFilter.getOrdenatedTypes()) {
-			Impressora.imprimir(archive);
-		};
+		Impressora.imprimir(DataFileTypeFilter.getOrdenatedTypes());
 		
 //		CountFileType.getOrdenated();
 //		Impressora.imprimir((CountFileType.getAsString()));

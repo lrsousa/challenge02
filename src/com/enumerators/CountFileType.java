@@ -77,14 +77,13 @@ public enum CountFileType {
 	abstract void incrementCountType(double banda);
 	public abstract double getBanda();
 	
-	public static final int callIncrementer(Archive archive) {
+	public static final void callIncrementer(Archive archive) {
 		try {
 			CountFileType fileType = CountFileType.valueOf(archive.getType());
 			fileType.incrementCountType(archive.getSize());
 		} catch (Exception e) {
-			System.out.println("Tipo ausdhauhsduhasd nao enasuhdauhsduh");
+//			System.out.println("Tipo ausdhauhsduhasd nao enasuhdauhsduh");
 		}
-		return 0;
 	}
 	
 	static double bandaTxt = 0;
