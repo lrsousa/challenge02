@@ -1,41 +1,44 @@
 package com.filters;
 
 import java.time.LocalDateTime;
-import java.time.ZoneOffset;
-import java.time.format.DateTimeFormatter;
-import java.util.Locale;
 
 import com.enumerators.CountDatetime;
 
-public final class DataDateTimeFilter {
+public final class DataDateTimeFilter extends AbstractDateTime {
 	
-	private static long last = 0;
+	private static long previous = 0;
 	
-	public static void filterBiggestTimeInterval(String dateTimeString) {
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MMM/yyyy:HH:mm:ss").withLocale(Locale.ENGLISH);
-		LocalDateTime dateTime = LocalDateTime.parse(dateTimeString, formatter);
+	public static void filterLargestTimeInterval(String stringDateTime) {
+		LocalDateTime dateTime = convertStringDateTimeInLocalDateTime(stringDateTime, FORMATTER);
 		
-		long timeToCalc = (dateTime.toInstant(ZoneOffset.ofHours(-03)).toEpochMilli());
-		long interval = timeToCalc - last;
+		if(previous == 0) {
+			previous = convetLocalDateTimeInMillis(dateTime);
+			return;
+		}
 		
-		if(last == 0) {
-			last = timeToCalc;
+		long actualDateTimeInMillis = convetLocalDateTimeInMillis(dateTime);
+		long interval = calcTimeIntervalUsingMillis(previous, actualDateTimeInMillis);
+		
+		if(interval > CountDatetime.FIRST.getTime()) {
+			feedCountDateTimeEnum(CountDatetime.FIRST, interval, actualDateTimeInMillis);
 			return;
 		}
-		if(interval > CountDatetime.first.getTime()) {
-			last = timeToCalc;
-			CountDatetime.first.setTime(interval);
+		if(interval > CountDatetime.SECOND.getTime()) {
+			feedCountDateTimeEnum(CountDatetime.SECOND, interval, actualDateTimeInMillis);
 			return;
 		}
-		if(interval > CountDatetime.second.getTime()) {
-			last = timeToCalc;
-			CountDatetime.second.setTime(interval);
+		if(interval > CountDatetime.THIRD.getTime()) {
+			feedCountDateTimeEnum(CountDatetime.THIRD, interval, actualDateTimeInMillis);
 			return;
 		}
-		if(interval > CountDatetime.third.getTime()) {
-			last = timeToCalc;
-			CountDatetime.third.setTime(interval);
-			return;
-		}
+	}
+	
+	private static void feedCountDateTimeEnum(CountDatetime countDatetime, long interval, long actual) {
+		changePreviousValue(actual);
+		CountDatetime.valueOf(countDatetime.name()).setTime(interval);
+	}
+
+	private static void changePreviousValue(long previous) {
+		DataDateTimeFilter.previous = previous;
 	}
 }

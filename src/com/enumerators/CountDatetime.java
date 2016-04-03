@@ -3,7 +3,7 @@ package com.enumerators;
 import java.time.Duration;
 
 public enum CountDatetime {
-	first {
+	FIRST {
 		@Override
 		public long getTime() {
 			return firstTime;
@@ -16,7 +16,7 @@ public enum CountDatetime {
 		}
 		
 	},
-	second {
+	SECOND {
 		@Override
 		public long getTime() {
 			return secondTime;
@@ -27,7 +27,7 @@ public enum CountDatetime {
 		}
 		
 	},
-	third {
+	THIRD {
 		@Override
 		public long getTime() {
 			return thirdTime;
@@ -43,30 +43,24 @@ public enum CountDatetime {
 	private static long thirdTime = 0;
 
 	public static String getFormatedResult() {
-		Duration duration = Duration.ofMillis(firstTime);
 		StringBuilder result = new StringBuilder()
-				.append("First interval:")
-				.append("\nHours: ").append(duration.toHours() % 24)
-				.append("\nMinutes: ").append(duration.toMinutes() % 60)
-				.append("\nSeconds: ").append(duration.getSeconds() % 60);
-		
-		duration = Duration.ofMillis(secondTime);
-		result.append("\nSecond interval:")
-				.append("\nHours: ").append(duration.toHours() % 24)
-				.append("\nMinutes: ").append(duration.toMinutes() % 60)
-				.append("\nSeconds: ").append(duration.getSeconds() % 60)
-				;
-
-		duration = Duration.ofMillis(thirdTime);
-		result.append("\nThird interval:")
-				.append("\nHours: ").append(duration.toHours() % 24)
-				.append("\nMinutes: ").append(duration.toMinutes() % 60)
-				.append("\nSeconds: ").append(duration.getSeconds() % 60)
+				.append("First: ").append(mountIntervalTimeLine(CountDatetime.FIRST))
+				.append("\nSecond: ").append(mountIntervalTimeLine(CountDatetime.SECOND))
+				.append("\nThird: ").append(mountIntervalTimeLine(CountDatetime.THIRD))
 				;
 		
 		return result.toString();
 	}
 	
+	private static String mountIntervalTimeLine(CountDatetime position) {
+		Duration duration = Duration.ofMillis(position.getTime());
+		return new StringBuilder()
+				.append(duration.toHours() % 24)
+				.append(":").append(duration.toMinutes() % 60)
+				.append(":").append(duration.getSeconds() % 60)
+				.toString();
+	}
+		
 	public abstract long getTime();
 	public abstract void setTime(long time);
 	
