@@ -86,13 +86,13 @@ public enum CountFileType {
 		}
 	}
 	
-	static double bandaTxt = 0;
-	static double bandaCsv = 0;
-	static double bandaPng = 0;
-	static double bandaJpg = 0;
-	static double bandaGif = 0;
-	static double bandaCss = 0;
-	static double bandaJs = 0;
+	private static double bandaTxt = 0;
+	private static double bandaCsv = 0;
+	private static double bandaPng = 0;
+	private static double bandaJpg = 0;
+	private static double bandaGif = 0;
+	private static double bandaCss = 0;
+	private static double bandaJs = 0;
 	
 	public static String getAsString() {
 		return  "BandaTxt : " + txt.getBanda()

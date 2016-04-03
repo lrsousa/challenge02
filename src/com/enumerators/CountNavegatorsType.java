@@ -51,9 +51,9 @@ public enum CountNavegatorsType {
 	public abstract void countIncrementer();
 	public abstract int getCount();
 	
-	static int countChrome = 0;
-	static int countSafari = 0;
-	static int countMsie = 0;
-	static int countFirefox = 0;
+	private static int countChrome = 0;
+	private static int countSafari = 0;
+	private static int countMsie = 0;
+	private static int countFirefox = 0;
 	
 }
