@@ -25,7 +25,4 @@ public final class DataOSFilter {
 		}
 		return oss;
 	}
-	
-	
-	
 }
