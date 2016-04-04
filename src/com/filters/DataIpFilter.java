@@ -42,6 +42,7 @@ public final class DataIpFilter extends AbstractDateTime {
 	
 	private static String getLastIpInLine(String linhaIps) {
 		String[] ips = linhaIps.split(" ");
-		return Arrays.asList(ips).get(ips.length - 1);
+		return ips[ips.length - 1];
+//		return Arrays.asList(ips).get(ips.length - 1);
 	}
 }
