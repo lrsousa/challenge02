@@ -35,7 +35,7 @@ public final class DataDateTimeFilter extends AbstractDateTime {
 	
 	private static void feedCountDateTimeEnum(CountDatetime countDatetime, long interval, long actual) {
 		changePreviousValue(actual);
-		CountDatetime.valueOf(countDatetime.name()).setTime(interval);
+		countDatetime.setTime(interval);
 	}
 
 	private static void changePreviousValue(long previous) {

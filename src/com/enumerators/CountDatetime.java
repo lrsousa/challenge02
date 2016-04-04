@@ -1,6 +1,9 @@
 package com.enumerators;
 
-import java.time.Duration;
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneOffset;
+import java.time.format.DateTimeFormatter;
 
 public enum CountDatetime {
 	FIRST {
@@ -22,6 +25,7 @@ public enum CountDatetime {
 		}
 		@Override
 		public void setTime(long time) {
+			thirdTime = secondTime;
 			secondTime = time;
 		}
 	},
@@ -46,16 +50,19 @@ public enum CountDatetime {
 				.append("\nSecond: ").append(mountIntervalTimeLine(CountDatetime.SECOND))
 				.append("\nThird: ").append(mountIntervalTimeLine(CountDatetime.THIRD))
 				;
-		
 		return result.toString();
 	}
 	
 	private static String mountIntervalTimeLine(CountDatetime position) {
-		Duration duration = Duration.ofMillis(position.getTime());
+		LocalDateTime localDateTime = LocalDateTime.ofInstant(Instant.ofEpochMilli(position.getTime()), ZoneOffset.ofHours(-03));
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MMM/yyyy:HH:mm:ss");
+		
+		localDateTime.format(formatter);
+		
 		return new StringBuilder()
-				.append(duration.toHours() % 24)
-				.append(":").append(duration.toMinutes() % 60)
-				.append(":").append(duration.getSeconds() % 60)
+				.append(localDateTime.getHour())
+				.append(":").append(localDateTime.getMinute())
+				.append(":").append(localDateTime.getSecond())
 				.toString();
 	}
 	public abstract long getTime();

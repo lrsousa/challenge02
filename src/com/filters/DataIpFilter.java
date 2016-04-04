@@ -1,6 +1,6 @@
 package com.filters;
 
-import java.util.Arrays;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
@@ -16,10 +16,15 @@ public final class DataIpFilter extends AbstractDateTime {
 	private static long currentTime = 0;
 	private static int countDistinctVisit = 0;
 	
-	private static Set<IP> ipList = new HashSet<IP>(); 
+	private static Set<IP> ipList = new HashSet<IP>();
+	HashMap<IP, Long> ipMap = new HashMap<IP, Long>();
 	
 	public static void calcDistinctVisit(String linhaIps, String stringDateTime) {
 		currentTime = convetLocalDateTimeInMillis(convertStringDateTimeInLocalDateTime(stringDateTime, FORMATTER));
+		
+		
+		
+		
 		if(startInterval == 0 || currentTime > endInterval) {
 			startFromZero(linhaIps);
 			return;
