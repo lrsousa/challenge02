@@ -58,7 +58,6 @@ public enum CountDatetime {
 				.append(":").append(duration.getSeconds() % 60)
 				.toString();
 	}
-	
 	public abstract long getTime();
 	public abstract void setTime(long time);
 }
