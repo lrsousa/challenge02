@@ -14,7 +14,6 @@ public enum CountDatetime {
 			secondTime = firstTime;
 			firstTime = time;
 		}
-		
 	},
 	SECOND {
 		@Override
@@ -25,7 +24,6 @@ public enum CountDatetime {
 		public void setTime(long time) {
 			secondTime = time;
 		}
-		
 	},
 	THIRD {
 		@Override
@@ -63,6 +61,4 @@ public enum CountDatetime {
 		
 	public abstract long getTime();
 	public abstract void setTime(long time);
-	
-	
 }
