@@ -4,11 +4,10 @@ import java.util.Comparator;
 import java.util.Set;
 import java.util.SortedSet;
 import java.util.TreeSet;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import com.enumerators.CountFileType;
 import com.modelo.Archive;
+import com.toolbox.Numerics;
 
 public final class DataFileTypeFilter {
 	public static void filterTypes(String linha) {
@@ -22,13 +21,13 @@ public final class DataFileTypeFilter {
 		}
 		return archives;
 	}
-	private static Pattern pattern = Pattern.compile("\\.jpg|\\.png|\\.gif|\\.js|\\.txt|\\.csv|\\.css");
+	
 	private static Archive getFirstType(String linha) {
-		Matcher matcher = pattern.matcher(linha);
-		if(matcher.find()) {
-			String sizeOfFile = linha.substring(matcher.end() + 15).split(" ", 2)[0];
-			if(sizeOfFile.matches("\\d+")) {
-				return new Archive(matcher.group().substring(1), Double.parseDouble(sizeOfFile));
+		for(CountFileType type : CountFileType.values()) {
+			int typeFilePosition = linha.indexOf("." + type.name());
+			String sizeOfFile = linha.substring(typeFilePosition + (16 + type.getSizeOfTypeName())).split(" ", 2)[0];
+			if(linha.indexOf(type.name()) > 0 && Numerics.isNumeric(sizeOfFile)) {
+				return new Archive(type.name(), Double.parseDouble(sizeOfFile));
 			}
 		}
 		return null;
