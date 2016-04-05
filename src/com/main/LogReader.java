@@ -29,7 +29,6 @@ public class LogReader {
 	public LogReader() throws IOException {
 		Path log = Paths.get("access.log");
 		Files.readAllLines(log, StandardCharsets.ISO_8859_1).forEach(linha -> {
-//			System.out.print(++count + " = ");
 			String[] dados = linha.split(" - - ", 2);
 			String stringDateTime = dados[1].substring(1, 21); 
 			DataIpFilter.calcDistinctVisit(dados[0], stringDateTime);
