@@ -22,7 +22,6 @@ public enum CountNavegatorsType {
 		public int getCount() {
 			return CountNavegatorsType.countSafari;
 		}
-		
 	},
 	MSIE {
 		@Override
@@ -34,7 +33,6 @@ public enum CountNavegatorsType {
 		public int getCount() {
 			return CountNavegatorsType.countMsie;
 		}
-		
 	},
 	Firefox {
 		@Override

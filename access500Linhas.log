@@ -1,3 +1,4 @@
+177.44.240.52 - 46.165.197.142 - - [05/Jul/2015:09:03:14 -0300] "GET /robots.txt HTTP/1.0" 200 7900 "-" "Mozilla/5.0 (compatible; MJ12bot/v1.4.5; http://www.majestic12.co.uk/bot.php?+)"
 177.44.240.52 - 66.249.64.51 - - [05/Jul/2015:06:55:38 -0300] "GET /wp-content/themes/dominio/img/seminario_dominio.jpg HTTP/1.0" 304 - "-" "Googlebot-Image/1.0"
 177.44.240.52 - 66.249.64.51 - - [05/Jul/2015:06:55:38 -0300] "GET /wp-content/themes/dominio/img/seminario_dominio.png HTTP/1.0" 304 - "-" "Googlebot-Image/1.0"
 177.44.240.52 - 66.249.64.56 - - [05/Jul/2015:06:56:38 -0300] "GET /wp-content/uploads/2015/01/3.gif HTTP/1.0" 304 - "-" "Googlebot-Image/1.0"

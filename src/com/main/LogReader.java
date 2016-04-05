@@ -23,13 +23,14 @@ public class LogReader {
 		new LogReader();
 		LocalTime finish = LocalTime.now();
 		System.out.print("Execucao levou(segundos): ");
-		System.out.println(Duration.between(start, finish).getSeconds());
+		System.out.println(Duration.between(start, finish));
 	}
-	
+	int count = 0;
 	public LogReader() throws IOException {
 		Path log = Paths.get("access.log");
 		Files.readAllLines(log, StandardCharsets.ISO_8859_1).forEach(linha -> {
-			String[] dados = linha.split(" - - ");
+//			System.out.print(++count + " = ");
+			String[] dados = linha.split(" - - ", 2);
 			String stringDateTime = dados[1].substring(1, 21); 
 			DataIpFilter.calcDistinctVisit(dados[0], stringDateTime);
 			DataDateTimeFilter.filterLargestTimeInterval(stringDateTime);

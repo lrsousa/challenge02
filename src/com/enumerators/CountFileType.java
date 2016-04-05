@@ -3,7 +3,7 @@ package com.enumerators;
 import com.modelo.Archive;
 
 public enum CountFileType {
-	jpg {
+	jpg(3) {
 		@Override
 		public void incrementCountType(double banda) {
 			CountFileType.bandaJpg += banda;
@@ -13,7 +13,7 @@ public enum CountFileType {
 			return CountFileType.bandaJpg;
 		}
 	},
-	png {
+	png(3) {
 		@Override
 		public void incrementCountType(double banda) {
 			CountFileType.bandaPng += banda;
@@ -23,27 +23,7 @@ public enum CountFileType {
 			return CountFileType.bandaPng;
 		}
 	},
-	txt {
-		@Override
-		void incrementCountType(double banda) {
-			CountFileType.bandaTxt += banda;
-		}
-		@Override
-		public double getBanda() {
-			return CountFileType.bandaTxt;
-		}
-	},
-	csv {
-		@Override
-		void incrementCountType(double banda) {
-			CountFileType.bandaCsv += banda;
-		}
-		@Override
-		public double getBanda() {
-			return CountFileType.bandaCsv;
-		}
-	},
-	gif {
+	gif(3) {
 		@Override
 		void incrementCountType(double banda) {
 			CountFileType.bandaGif += banda;
@@ -53,17 +33,7 @@ public enum CountFileType {
 			return CountFileType.bandaGif;
 		}
 	},
-	css {
-		@Override
-		void incrementCountType(double banda) {
-			CountFileType.bandaCss += banda;
-		}
-		@Override
-		public double getBanda() {
-			return CountFileType.bandaCss;
-		}
-	},
-	js {
+	js(2) {
 		@Override
 		void incrementCountType(double banda) {
 			CountFileType.bandaJs += banda;
@@ -72,10 +42,48 @@ public enum CountFileType {
 		public double getBanda() {
 			return CountFileType.bandaJs;
 		}
+	},
+	txt(3) {
+		@Override
+		void incrementCountType(double banda) {
+			CountFileType.bandaTxt += banda;
+		}
+		@Override
+		public double getBanda() {
+			return CountFileType.bandaTxt;
+		}
+	},
+	csv(3) {
+		@Override
+		void incrementCountType(double banda) {
+			CountFileType.bandaCsv += banda;
+		}
+		@Override
+		public double getBanda() {
+			return CountFileType.bandaCsv;
+		}
+	},
+	css(3) {
+		@Override
+		void incrementCountType(double banda) {
+			CountFileType.bandaCss += banda;
+		}
+		@Override
+		public double getBanda() {
+			return CountFileType.bandaCss;
+		}
 	};
+	private int sizeOfTypeName;
+	private CountFileType(int sizeOfTypeName) {
+		this.sizeOfTypeName = sizeOfTypeName;
+	}
 	
 	abstract void incrementCountType(double banda);
 	public abstract double getBanda();
+	
+	public int getSizeOfTypeName() {
+		return sizeOfTypeName;
+	}
 	
 	public static final void callIncrementer(Archive archive) {
 		try {
