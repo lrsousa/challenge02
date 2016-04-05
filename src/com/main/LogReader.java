@@ -22,9 +22,8 @@ public class LogReader {
 		LocalTime start = LocalTime.now();
 		new LogReader();
 		LocalTime finish = LocalTime.now();
-		System.out.print("Segundos: ");
+		System.out.print("Execucao levou(segundos): ");
 		System.out.println(Duration.between(start, finish).getSeconds());
-		
 	}
 	
 	public LogReader() throws IOException {
@@ -32,7 +31,6 @@ public class LogReader {
 		Files.readAllLines(log, StandardCharsets.ISO_8859_1).forEach(linha -> {
 			String[] dados = linha.split(" - - ");
 			String stringDateTime = dados[1].substring(1, 21); 
-		
 			DataIpFilter.calcDistinctVisit(dados[0], stringDateTime);
 			DataDateTimeFilter.filterLargestTimeInterval(stringDateTime);
 			DataNavegatorFilter.filterNavegators(dados[1]);

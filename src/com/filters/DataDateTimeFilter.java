@@ -15,7 +15,6 @@ public final class DataDateTimeFilter extends AbstractDateTime {
 			previous = convetLocalDateTimeInMillis(dateTime);
 			return;
 		}
-		
 		long actualDateTimeInMillis = convetLocalDateTimeInMillis(dateTime);
 		long interval = calcTimeIntervalUsingMillis(previous, actualDateTimeInMillis);
 		
@@ -31,6 +30,7 @@ public final class DataDateTimeFilter extends AbstractDateTime {
 			feedCountDateTimeEnum(CountDatetime.THIRD, interval, actualDateTimeInMillis);
 			return;
 		}
+		changePreviousValue(actualDateTimeInMillis);
 	}
 	
 	private static void feedCountDateTimeEnum(CountDatetime countDatetime, long interval, long actual) {

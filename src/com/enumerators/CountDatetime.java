@@ -1,10 +1,5 @@
 package com.enumerators;
 
-import java.time.Instant;
-import java.time.LocalDateTime;
-import java.time.ZoneOffset;
-import java.time.format.DateTimeFormatter;
-
 public enum CountDatetime {
 	FIRST {
 		@Override
@@ -54,15 +49,11 @@ public enum CountDatetime {
 	}
 	
 	private static String mountIntervalTimeLine(CountDatetime position) {
-		LocalDateTime localDateTime = LocalDateTime.ofInstant(Instant.ofEpochMilli(position.getTime()), ZoneOffset.ofHours(-03));
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MMM/yyyy:HH:mm:ss");
-		
-		localDateTime.format(formatter);
-		
+//		TimeUnit.MILLISECONDS.toMinutes(position.getTime())
 		return new StringBuilder()
-				.append(localDateTime.getHour())
-				.append(":").append(localDateTime.getMinute())
-				.append(":").append(localDateTime.getSecond())
+				.append((position.getTime() / (1000 * 60 * 60)) % 24)
+				.append(":").append((position.getTime() / (1000 * 60)) % 60)
+				.append(":").append((position.getTime() / 1000) % 60)
 				.toString();
 	}
 	public abstract long getTime();
