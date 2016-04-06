@@ -1,17 +1,6 @@
 package com.enumerators;
 
 public enum CountNavegatorsType {
-	Chrome {
-		@Override
-		public void countIncrementer() {
-			CountNavegatorsType.countChrome++;			
-		}
-
-		@Override
-		public int getCount() {
-			return CountNavegatorsType.countChrome;
-		}
-	},
 	Safari {
 		@Override
 		public void countIncrementer() {
@@ -23,15 +12,15 @@ public enum CountNavegatorsType {
 			return CountNavegatorsType.countSafari;
 		}
 	},
-	MSIE {
+	Chrome {
 		@Override
 		public void countIncrementer() {
-			CountNavegatorsType.countMsie++;
+			CountNavegatorsType.countChrome++;			
 		}
 
 		@Override
 		public int getCount() {
-			return CountNavegatorsType.countMsie;
+			return CountNavegatorsType.countChrome;
 		}
 	},
 	Firefox {
@@ -43,6 +32,17 @@ public enum CountNavegatorsType {
 		@Override
 		public int getCount() {
 			return CountNavegatorsType.countFirefox;
+		}
+	},
+	MSIE {
+		@Override
+		public void countIncrementer() {
+			CountNavegatorsType.countMsie++;
+		}
+
+		@Override
+		public int getCount() {
+			return CountNavegatorsType.countMsie;
 		}
 	};
 	

@@ -13,6 +13,7 @@ import com.filters.DataIpFilter;
 import com.filters.DataNavegatorFilter;
 import com.filters.DataOSFilter;
 import com.interfaces.DataFilter;
+import com.toolbox.Impressora;
 
 public class LogReaderThread {
 	
@@ -40,9 +41,12 @@ public class LogReaderThread {
 				lines.forEach(line -> {
 					dataFilter.filterInit(line);
 				});
+				Impressora.imprimir(dataFilter.toString());
 				printCurrentTime(dataFilter.getClass().getName());
 			}).start();
 		}
+		
+		
 	}
 
 	private void printCurrentTime(String string) {

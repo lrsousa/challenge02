@@ -43,6 +43,16 @@ public enum CountFileType {
 			return CountFileType.bandaJs;
 		}
 	},
+	css(3) {
+		@Override
+		void incrementCountType(double banda) {
+			CountFileType.bandaCss += banda;
+		}
+		@Override
+		public double getBanda() {
+			return CountFileType.bandaCss;
+		}
+	},
 	txt(3) {
 		@Override
 		void incrementCountType(double banda) {
@@ -62,17 +72,8 @@ public enum CountFileType {
 		public double getBanda() {
 			return CountFileType.bandaCsv;
 		}
-	},
-	css(3) {
-		@Override
-		void incrementCountType(double banda) {
-			CountFileType.bandaCss += banda;
-		}
-		@Override
-		public double getBanda() {
-			return CountFileType.bandaCss;
-		}
 	};
+	
 	private int sizeOfTypeName;
 	private CountFileType(int sizeOfTypeName) {
 		this.sizeOfTypeName = sizeOfTypeName;
